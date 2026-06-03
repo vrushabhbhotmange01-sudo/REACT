@@ -7,8 +7,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/form" element={<FormPage />} />
+        <Route
+          path="/"
+          element={<LoginPage />}
+        />
+
+        <Route
+          path="/form"
+          element={<FormPage />}
+        />
       </Routes>
     </BrowserRouter>
   );

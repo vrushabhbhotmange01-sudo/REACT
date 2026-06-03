@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  username: ""
+  username: "",
+  theme: "light"
 };
 
 const userSlice = createSlice({
@@ -10,10 +11,17 @@ const userSlice = createSlice({
   reducers: {
     setUsername: (state, action) => {
       state.username = action.payload;
+    },
+
+    setTheme: (state, action) => {
+      state.theme = action.payload;
     }
   }
 });
 
-export const { setUsername } = userSlice.actions;
+export const {
+  setUsername,
+  setTheme
+} = userSlice.actions;
 
 export default userSlice.reducer;
