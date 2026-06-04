@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import { setTheme } from "../features/userSlice";
@@ -79,22 +78,12 @@ function FormPage() {
     }
 
     setIsSubmitting(true);
-    const payload = {
-      formName: "EmployeeForm",
-      username: username,
-      formData: {
-        name: name.trim(),
-        age: parseInt(age, 10)
-      }
-    };
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/submit-form",
-        payload
-      );
+      // Simulate network response delay
+      await new Promise((resolve) => setTimeout(resolve, 600));
 
-      addToast(response.data.message || "Form submitted successfully!", "success");
+      addToast("Form submitted successfully!", "success");
       
       // Add the submitted employee to the local dashboard table
       const newEmployee = {
@@ -112,7 +101,7 @@ function FormPage() {
       setErrors({});
     } catch (error) {
       addToast(
-        error.response?.data?.message || 
+        error.message || 
         "Form submission failed. Please try again.", 
         "error"
       );

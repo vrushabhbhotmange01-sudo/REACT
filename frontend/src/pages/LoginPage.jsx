@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setUsername } from "../features/userSlice";
 import { useNavigate } from "react-router-dom";
@@ -50,19 +49,15 @@ function LoginPage() {
 
     setIsLoading(true);
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/login",
-        {
-          email,
-          password
-        }
-      );
+      // Simulate network response delay
+      await new Promise((resolve) => setTimeout(resolve, 800));
 
-      dispatch(setUsername(response.data.username));
+      const generatedUsername = email.split("@")[0] || "john_doe";
+      dispatch(setUsername(generatedUsername));
       navigate("/form");
     } catch (err) {
       setError(
-        err.response?.data?.message || 
+        err.message || 
         "Authentication failed. Please check your credentials."
       );
     } finally {
